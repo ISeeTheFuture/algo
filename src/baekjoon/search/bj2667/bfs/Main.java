@@ -1,4 +1,4 @@
-package baekjoon.bj2667.bfs;
+package baekjoon.search.bj2667.bfs;
 
 import java.awt.Point;
 import java.util.Arrays;

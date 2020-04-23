@@ -1,4 +1,4 @@
-package baekjoon.bj11399;
+package baekjoon.greedy.bj11399;
 
 import java.util.Arrays;
 import java.util.Scanner;

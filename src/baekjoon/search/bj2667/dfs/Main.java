@@ -1,4 +1,4 @@
-package baekjoon.bj2667.dfs;
+package baekjoon.search.bj2667.dfs;
 
 import java.util.Arrays;
 import java.util.Scanner;

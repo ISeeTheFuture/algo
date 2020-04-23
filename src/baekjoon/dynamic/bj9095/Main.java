@@ -1,4 +1,4 @@
-package baekjoon.bj9095;
+package baekjoon.dynamic.bj9095;
 
 import java.util.Scanner;
 
@@ -14,6 +14,9 @@ public class Main {
 		DP[1] = 1;
 		DP[2] = 2;
 		DP[3] = 4;
+//		DP[4] = 7;
+//		DP[5] = 13;
+//		DP[6] = 24;
 		
 		for(int i = 0; i < n; i++) {
 			int ipt = sc.nextInt(); // 변수 입력
