@@ -22,8 +22,8 @@ public class Main {
 			if(remain/coin[i] != 0) {
 				cnt += remain/coin[i]; // 나눠서 동전개수 구하기
 				remain = remain%coin[i]; // 다음 연산에 사용할 잔금
-//				System.out.println("나머지 : " + remain);
-//				System.out.println(coin[i]+" 동전 카운트 : " + cnt);				
+				System.out.println("나머지 : " + remain);
+				System.out.println(coin[i]+" 동전 카운트 : " + cnt);				
 			}
 		}
 		

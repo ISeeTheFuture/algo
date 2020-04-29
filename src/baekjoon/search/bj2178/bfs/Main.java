@@ -22,7 +22,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//입력부
+		// 입력부
 		n = sc.nextInt();
 		m = sc.nextInt();
 		map = new int[n][m];
@@ -41,6 +41,15 @@ public class Main {
 			// 3. 따라서 별도의 for문은 필요없고, 어차피 원트에 끝남.
 		bfs(0,0);
 		
+		
+		// 확인용
+//		for(int i = 0; i < visited.length; i++) {
+//			for(int j = 0; j < visited[i].length; j++) {
+//				System.out.print(visited[i][j]+" ");
+//			}
+//			System.out.println();
+//			
+//		}
 		
 		// 답안 제출
 		System.out.println(visited[n-1][m-1]);
