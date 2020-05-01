@@ -21,8 +21,6 @@ public class Main {
 		for(int i = 0; i < t; i++) {
 			run();			
 		}
-		
-
 	}
 	
 	private static void run() {
@@ -35,13 +33,14 @@ public class Main {
 		map = new int[n][m];
 		visited = new boolean[n][m];
 		
+		// 입력부
 		for(int i = 0; i < k; i++) {
 			int x = sc.nextInt();
 			int y = sc.nextInt();
 			map[y][x] = 1;
 		}
 		
-		
+		// 연산부 : 아파트 단지 문제
 		for(int i = 0; i < n; i++) {
 			for(int j = 0; j < m; j++) {
 				if(map[i][j]==1&&!visited[i][j]) {
