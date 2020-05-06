@@ -41,7 +41,7 @@ public class Main {
 			//	=>  2 3 7 5 6 => 2 3 5 6 7
 		
 		
-		// 연산부
+		// 연산부 : LIS 구하는 연산부
 		for(int i = 0; i < n; i++) {
 			if(dp[i] == 0) dp[i] = 1;
 			for(int j = 0; j < i; j++) {
@@ -49,7 +49,7 @@ public class Main {
 					if(dp[i] < dp[j] + 1) { 
 						dp[i] = dp[j] + 1;
 					}
-				}
+				} // dp 1~ dp 9 => dp 9가 최대값은 아니다. dp7이 최대값일 수도 있다.
 			}
 		}
 		Arrays.sort(dp); // 정렬해서 최대값을 맨 뒤로 보낸다.
