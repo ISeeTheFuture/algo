@@ -11,12 +11,17 @@ public class Main {
 		int v = sc.nextInt();
 		
 		// 주의할 점 : left, right, mid, ans 는 전부 날짜. 거리 개념이 아님.
-				// 채점하면 이게 맞다고 하는데, 논리적으로는 오히려 틀림.
-					// 다만, (A-B)는 무조건 1이상이므로 소요 날짜는 V값을 절대 초과할 수 없음을 추론 해야함.
+				// 다만, (A-B)는 무조건 1이상이므로 소요 날짜는 V값을 절대 초과할 수 없음을 추론 해야함.
+//				int left = 0;
+//				int right = v;
+//				int mid = v;
+//				int ans = v;		
+		
+				// 수정하면..
 				int left = 0;
-				int right = v;
-				int mid = v;
-				int ans = v;
+				int right = v/(a-b)+1;
+				int mid = v/(a-b)+1;
+				int ans = v/(a-b)+1;
 		
 				// 다른 언어라면 밑에처럼 나올 수 있는 최대 날짜 값을 수동으로 입력하는 것이 맞음.
 					// 자바라서 시간초과 나고, 더 어렵게 추론해야함.
