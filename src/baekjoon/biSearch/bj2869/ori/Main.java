@@ -3,6 +3,7 @@ package baekjoon.biSearch.bj2869.ori;
 import java.util.Scanner;
 
 // 대체 이게 왜 이분탐색???
+// N => 며칠
 	//NA-(N-1)B = V
 	//NA-NB+B
 	//N(A-B)+B = V

@@ -23,10 +23,10 @@ public class Main {
 			tree[i] = new ArrayList<>();
 		}
 		
-		level = new int[n+1];
-		parent = new int[n+1];
+		level = new int[n+1]; // 전부 0; idx 0 ~ 7 : 0
+		parent = new int[n+1]; // 전부 0; idx 0 ~ 7 : 0 
 		
-		for(int i = 0; i < n-1; i++) {
+		for(int i = 0; i < n-1; i++) { // 양방향 인접리스트
 			int x = sc.nextInt();
 			int y = sc.nextInt();
 			tree[x].add(y);
@@ -47,21 +47,20 @@ public class Main {
 	public static void bt(int node) { // 백트래킹. 이번엔 재귀대신 while 문 써서.
 
 		order.add(node); // 여기에 이제 방문 예정
-		level[node] = 0; // 1은 레벨 0 확실함.
+		level[node] = 1; // 1은 레벨 0 확실함.
 		parent[node] = 0; // 1은 루트노드라 부모 없다. 없는 숫자 아무거나 집어넣으면 됨.
 		
 		while(!order.isEmpty()) { // 이제 여기서 못나옴
 			int nowNode = order.pop(); // 방문 확정
-			System.out.println("nowNode : " + nowNode);
+//			System.out.println("nowNode : " + nowNode);
 			
 			for(int i = 0; i < tree[nowNode].size(); i++) {
 				int linkedNode = tree[nowNode].get(i);// nowNode의 연결된 노드
-				System.out.println("linkedNode : " + linkedNode);
+//				System.out.println("linkedNode : " + linkedNode);
 				if(level[linkedNode] == 0) { // 연결된 애 레벨 몇이야? 아직 안정해서 몰랐으므로 0.
 					order.add(linkedNode); // 다음 방문 예정
 					level[linkedNode] = level[nowNode] + 1; // 부모 노드보다 레벨 1업
 					parent[linkedNode] = nowNode; // linkedNode의 부모노드는 nextNode
-					
 				}
 			}
 			
