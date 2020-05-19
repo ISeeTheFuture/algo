@@ -1,7 +1,7 @@
 package programmers.dp.lv3Tile;
 
 
-public class Main {
+public class Main2 {
 
 	public static void main(String[] args){
 		int N = 5;
@@ -25,22 +25,26 @@ public class Main {
 		//			= dp3+3*2
 		//			= 10+6 = 16
 		//		dp5 = dp4-5+5*3
-		//			= dp4+5*2		
-		//			= 16+10	=26
+		//			= dp4+5*2	
 		
-		// 입력부:그딴거 없다
+		// 입력부 : 0,1,1,2,3,5,8...
+		int[] fibo = new int[N+1];
+		fibo[0] = 0;
+		fibo[1] = 1;
+		if(N>2) {
+			for(int i = 2; i < fibo.length; i++) {
+				fibo[i] = fibo[i-1]+fibo[i-2];
+			}			
+		}
+		
 		// 연산부
 		if(N==1) return 4; // 예외적인 경우 일단 처리
-		if(N==2) return 6;
 		
-		// 진짜는 3부터 시작이지
-			//인생도 30대부터..
-		long[] dp = new long[N+1];
-//		dp[0] = 0;
+		int[] dp = new int[N+1];
+		dp[0] = 0;
 		dp[1] = 4;
-		dp[2] = 6;
-		for(int i = 3; i < dp.length; i++) {
-			dp[i] = dp[i-1]+dp[i-2];
+		for(int i = 2; i < dp.length; i++) {
+			dp[i] = dp[i-1]+fibo[i]*2;
 		}
 		
 		return dp[N];
