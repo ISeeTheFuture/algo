@@ -7,52 +7,62 @@ import java.util.Scanner;
 public class Main {
 
 	static Scanner sc = new Scanner(System.in);
+	static List<Integer>[] list;
+	static int[][] arr;
+	static int arrSize;
+	static Boolean[] visited;
 	
 	public static void main(String[] args) {
 		// 입력부
-		int[] arr = new int[sc.nextInt()+1];
-		int st = sc.nextInt();
-		int ed = sc.nextInt();
+		arrSize = sc.nextInt()+1;
+		arr = new int[arrSize][arrSize];
+		list = new ArrayList[arrSize];
+		visited = new Boolean[arrSize];
 		
-		int iptSize = sc.nextInt();
-
-		for(int i = 0; i < iptSize; i++) {
-			int tmp = sc.nextInt();
-			arr[sc.nextInt()] = tmp;
+		
+		
+		for(int i = 1; i < arrSize; i++) {
+			list[i] = new ArrayList<Integer>();
+			visited[i] = new Boolean(false);
+		}
+		
+		for(int i = 1; i < arr.length; i++) {
+			for(int j = 1; j < arr[i].length; j++) {
+				arr[i][j] = sc.nextInt();
+			}
+			
 		}
 		
 		// 연산부
-			// 시작 지점에서 루트노드까지의 경로
-		List<Integer> frmSt = new ArrayList<Integer>();
-		while(true) {
-			frmSt.add(st);
-			st = arr[st];
-			if(st == 0) {
-				break;
-			}
-		}
-			// 끝 지점에서 루트노드까지의 경로
-		List<Integer> frmEd = new ArrayList<Integer>();
-		while(true) {
-			frmEd.add(ed);
-			ed = arr[ed];
-			if(ed == 0) {
-				break;
+		for(int i = 1; i < arrSize; i++) {
+			for(int j = 1; j < arrSize; j++) {
+				if(arr[i][j] != 0) dfs(i, j);
 			}
 		}
 		
 		// 출력부
-			// 두 경로 중 겹치는 부모노드가 있는지 확인
-				// 겹치면 해당 지점까지의 거리를 각기 더하고
-		for(int i = 0; i < frmSt.size(); i++) {
-			for(int j = 0; j < frmEd.size(); j++) {
-				if(frmSt.get(i)==frmEd.get(j)) {
-					System.out.println(i+j);
-					return;
-				}
+		StringBuilder sb = new StringBuilder();
+		for(int i = 1; i < arrSize; i++) {
+			for(int j = 0; j < list[i].size(); j++) {
+				arr[i][list[i].get(j)] = 1;
 			}
+			for(int j = 1; j < arr[i].length; j++) {
+				sb.append(arr[i][j]).append(" ");
+			}
+			sb.append("\n");
 		}
-				// 겹치는 부모노드가 없다면 친척이 아니므로 -1
-		System.out.println(-1);
+		
+		System.out.print(sb);
+	}
+	
+	public static void dfs(int a, int b) {
+		if(visited[a]) return;
+		list[a].add(b);
+		visited[b] = true;
+		
+		for(int i = 1; i < arrSize; i++) {
+			if(!visited[i]&&arr[b][i]==1) dfs(a, i);
+		}
+		visited[b] = false;
 	}
 }
