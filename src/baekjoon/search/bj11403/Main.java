@@ -56,10 +56,12 @@ public class Main {
 	}
 	
 	public static void dfs(int a, int b) {
-		if(visited[a]) return;
-		list[a].add(b);
-		visited[b] = true;
+		if(list[a].contains(b)) return; // DFS 가지치기 : 쓸데없는 중복 연산 줄여줌. 이거 없으면 시간초과. 
+		if(visited[a]) return; // 재귀 종료
 		
+		list[a].add(b); // 새로운 좌표일 경우, 답안 배열에 추가.
+		
+		visited[b] = true;		
 		for(int i = 1; i < arrSize; i++) {
 			if(!visited[i]&&arr[b][i]==1) dfs(a, i);
 		}

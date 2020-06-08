@@ -1,11 +1,10 @@
-package baekjoon.backtrack.bj2210.fail;
+package baekjoon.search.bj11403.fail;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
-
-// 12부터는 시간초과나서 fail
+//12부터는 시간초과나서 fail
 //5
 //0 1 1 1 0
 //1 0 1 1 0
@@ -72,54 +71,64 @@ import java.util.Set;
 
 
 public class Main {
+
 	static Scanner sc = new Scanner(System.in);
-	static int[][] map = new int[5][5];
-	static int[] dx = {0,0,-1,1};
-	static int[] dy = {1,-1,0,0};
-	static Set<String> strSet = new HashSet<>();
+	static List<Integer>[] list;
+	static int[][] arr;
+	static int arrSize;
+	static Boolean[] visited;
 	
 	public static void main(String[] args) {
 		// 입력부
-		for(int i = 0; i < map.length; i++) {
-			for(int j = 0; j < map[i].length; j++) {
-				map[i][j] = sc.nextInt();
+		arrSize = sc.nextInt()+1;
+		arr = new int[arrSize][arrSize];
+		list = new ArrayList[arrSize];
+		visited = new Boolean[arrSize];
+		
+		
+		
+		for(int i = 1; i < arrSize; i++) {
+			list[i] = new ArrayList<Integer>();
+			visited[i] = new Boolean(false);
+		}
+		
+		for(int i = 1; i < arr.length; i++) {
+			for(int j = 1; j < arr[i].length; j++) {
+				arr[i][j] = sc.nextInt();
 			}
+			
 		}
 		
 		// 연산부
-			// 이상하게 StringBuilder 로 하면 안됨..
-		for(int i = 0; i < map.length; i++) {
-			for(int j = 0; j < map[i].length; j++) {
-//				StringBuilder sb = new StringBuilder();
-				String sb = "";
-				dfs(i, j, sb);
+		for(int i = 1; i < arrSize; i++) {
+			for(int j = 1; j < arrSize; j++) {
+				if(arr[i][j] != 0) dfs(i, j);
 			}
 		}
 		
+		// 출력부
+		StringBuilder sb = new StringBuilder();
+		for(int i = 1; i < arrSize; i++) {
+			for(int j = 0; j < list[i].size(); j++) {
+				arr[i][list[i].get(j)] = 1;
+			}
+			for(int j = 1; j < arr[i].length; j++) {
+				sb.append(arr[i][j]).append(" ");
+			}
+			sb.append("\n");
+		}
 		
-		System.out.println(strSet.size());
-//		System.out.println(strSet.toString());
-		
+		System.out.print(sb);
 	}
-
-	public static void dfs(int x, int y, String sb) {
-//		sb.append(map[x][y]);
-		sb += map[x][y];
+	
+	public static void dfs(int a, int b) {
+		if(visited[a]) return;
+		list[a].add(b);
+		visited[b] = true;
 		
-		if(sb.length() == 6) {
-			strSet.add(sb);
-//			System.out.println(sb.toString());
-//			System.out.println();
-			return;
-		} else if(sb.length() > 6) return;
-		
-		for(int i = 0; i < 4; i++) {
-			int nx = x+dx[i];
-			int ny = y+dy[i];
-			
-			if(nx>=0&&nx<map.length&&ny>=0&&ny<map.length) {
-				dfs(nx, ny, sb);
-			}
+		for(int i = 1; i < arrSize; i++) {
+			if(!visited[i]&&arr[b][i]==1) dfs(a, i);
 		}
+		visited[b] = false;
 	}
 }
